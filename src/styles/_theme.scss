@@ -1,0 +1,71 @@
+$breakpoints: (
+	xs: 600px,
+	sm: 768px,
+	md: 1000px,
+	lg: 1200px,
+	xl: 2000px,
+);
+
+$text-sizes: (
+	xs: 0.5rem,
+	sm: 0.75rem,
+	md: 1rem,
+	lg: 1.5rem,
+	xl: 2rem,
+);
+
+$text-colors: (
+	primary: #f8f8f2,
+	focus: fade-out(#f8f8f2, 0.2),
+	disabled: fade-out(#f8f8f2, 0.4),
+	accent: #bd93f9,
+	error: #f87272,
+);
+
+$background-colors: (
+	primary: #282a36,
+	focus: lighten(#282a36, 5%),
+	disabled: darken(#282a36, 10%),
+	accent: lighten(#282a36, 10%),
+);
+
+$_spacingUnit: 0.25rem;
+
+$spacing: (
+	2xs: $_spacingUnit / 2,
+	xs: $_spacingUnit,
+	sm: $_spacingUnit * 2,
+	md: $_spacingUnit * 4,
+	lg: $_spacingUnit * 8,
+	2xl: $_spacingUnit * 12,
+);
+
+//getters
+@function get-value($map, $key) {
+	@if map-has-key($map, $key) {
+		@return map-get($map, $key);
+	}
+
+	@warn "Unknown `#{$key}` in map.";
+	@return null;
+}
+
+@function breakpoint($key) {
+	@return get-value($breakpoints, $key);
+}
+
+@function text-size($key) {
+	@return get-value($text-sizes, $key);
+}
+
+@function text-color($key) {
+	@return get-value($text-colors, $key);
+}
+
+@function background-color($key) {
+	@return get-value($background-colors, $key);
+}
+
+@function spacing($key) {
+	@return get-value($spacing, $key);
+}

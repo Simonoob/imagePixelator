@@ -1,0 +1,84 @@
+@use 'src/styles/theme' as theme;
+
+.toUpload {
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	background-color: theme.background-color(focus);
+	outline: 2px dashed theme.background-color(accent);
+	padding: theme.spacing(lg);
+	outline-offset: theme.spacing(xs);
+	border-radius: theme.spacing(sm);
+	@media (hover: hover) {
+		background-color: theme.background-color(accent);
+	}
+
+	div {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		gap: theme.spacing(sm);
+		svg {
+			height: theme.spacing(lg);
+			width: theme.spacing(lg);
+		}
+		p {
+			font-size: theme.text-size(sm);
+			text-align: center;
+		}
+	}
+}
+
+.uploaded {
+	display: grid;
+	align-items: center;
+	gap: theme.spacing(md);
+	label {
+		font-size: theme.text-size(md);
+		text-transform: capitalize;
+		display: flex;
+		align-items: center;
+		gap: theme.spacing(sm);
+		svg {
+			height: theme.spacing(md);
+			width: theme.spacing(md);
+		}
+	}
+	.uploadedContainer {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		align-items: center;
+		justify-items: center;
+		gap: theme.spacing(md);
+		img {
+			grid-column: span 1;
+			object-fit: contain;
+			outline: 2px dashed theme.background-color(accent);
+			outline-offset: theme.spacing(2xs);
+			border-radius: theme.spacing(xs);
+		}
+		span {
+			grid-column: span 3;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			font-size: theme.text-size(sm);
+			white-space: nowrap;
+			width: 100%;
+		}
+		.deleteIcon {
+			border: 1px solid theme.text-color(error);
+			color: theme.text-color(error);
+			padding: theme.spacing(sm);
+			border-radius: 50%;
+			display: grid;
+			align-items: center;
+			justify-items: center;
+			@media (hover: hover) {
+				&:hover {
+					background-color: theme.text-color(error);
+					color: theme.text-color(primary);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+@use 'src/styles/theme' as theme;
+
+.root {
+	// mb-4 text-md capitalize flex items-center gap-x-2
+	font-size: theme.text-size(md);
+	text-transform: capitalize;
+	label {
+		display: flex;
+		align-items: center;
+		row-gap: theme.spacing(md);
+	}
+}

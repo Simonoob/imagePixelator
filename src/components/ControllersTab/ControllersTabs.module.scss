@@ -1,0 +1,39 @@
+@use 'src/styles/theme' as theme;
+
+.ControllersTabs {
+	display: flex;
+	flex-direction: column;
+	row-gap: theme.spacing(lg);
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: theme.spacing(xs);
+		border-radius: theme.spacing(sm) 0 0 0;
+		overflow: hidden;
+	}
+}
+
+.tab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: theme.spacing(md);
+	flex-wrap: nowrap;
+	white-space: nowrap;
+	flex: 1;
+	border-bottom: 2px solid theme.text-color(disabled);
+	color: theme.text-color(disabled);
+	padding: theme.spacing(xs) theme.spacing(md);
+	@media (hover: hover) {
+		&:hover,
+		&:focus {
+			color: theme.text-color(primary);
+		}
+	}
+	&.-active {
+		color: theme.text-color(primary);
+		border-color: theme.text-color(primary);
+		background-color: theme.background-color(accent);
+	}
+}

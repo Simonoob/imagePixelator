@@ -1,0 +1,63 @@
+@use './theme' as theme;
+
+.mainContainer {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	column-gap: theme.spacing(lg);
+	height: 100vh;
+	max-height: 100vh;
+	position: relative;
+
+	grid-template-columns: repeat(2, 1fr);
+	@media screen and (min-width: theme.breakpoint(xs)) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media screen and (min-width: theme.breakpoint(sm)) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	@media screen and (min-width: theme.breakpoint(md)) {
+		grid-template-columns: repeat(8, 1fr);
+	}
+	@media screen and (min-width: theme.breakpoint(lg)) {
+		grid-template-columns: repeat(10, 1fr);
+	}
+	@media screen and (min-width: theme.breakpoint(xl)) {
+		grid-template-columns: repeat(12, 1fr);
+	}
+
+	padding: theme.spacing(lg);
+	padding-right: 0;
+}
+
+.mainPageContent {
+	grid-column: span 2;
+	@media screen and (min-width: theme.breakpoint(xs)) {
+		grid-column: span 2;
+	}
+	@media screen and (min-width: theme.breakpoint(sm)) {
+		grid-column: span 2;
+	}
+	@media screen and (min-width: theme.breakpoint(md)) {
+		grid-column: span 6;
+	}
+	@media screen and (min-width: theme.breakpoint(lg)) {
+		grid-column: span 8;
+	}
+	@media screen and (min-width: theme.breakpoint(xl)) {
+		grid-column: span 10;
+	}
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	max-height: 100%;
+	nav {
+		margin-bottom: map-get(theme.$spacing, md);
+	}
+	h1 {
+		font-size: map-get(theme.$text-sizes, xl);
+		display: flex;
+		gap: map-get(theme.$spacing, xs);
+		letter-spacing: map-get(theme.$spacing, 2xs);
+	}
+}

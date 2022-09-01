@@ -1,0 +1,11 @@
+@use 'src/styles/theme' as theme;
+
+.Drawer {
+	grid-column: span 2;
+	border: 1px solid theme.text-color(disabled);
+	border-right: none;
+	border-radius: theme.spacing(sm) 0 0 theme.spacing(sm);
+	overflow: auto;
+	height: 100%;
+	padding: theme.spacing(md);
+}
