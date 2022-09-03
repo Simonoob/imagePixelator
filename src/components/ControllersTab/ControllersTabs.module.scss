@@ -34,4 +34,8 @@
 		border-color: theme.text-color(primary);
 		background-color: theme.background-color(accent);
 	}
+	&.-disabled {
+		pointer-events: none;
+		opacity: 0.2;
+	}
 }

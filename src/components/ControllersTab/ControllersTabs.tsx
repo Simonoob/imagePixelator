@@ -28,11 +28,13 @@ const ControllersTabs = () => {
 			title: 'Color',
 			icon: <BlendingModeIcon />,
 			content: <div>Color</div>,
+			disabled: true,
 		},
 		{
 			title: 'Compare & Export',
 			icon: <RocketIcon />,
 			content: <ExportController />,
+			disabled: true,
 		},
 	]
 
@@ -42,8 +44,10 @@ const ControllersTabs = () => {
 				{tabs.map(tab => (
 					<button
 						className={`${styles.tab} ${
-							activeTab === tab.title && styles['-active']
-						}`}
+							activeTab === tab.title
+								? styles['-active']
+								: undefined
+						} ${tab.disabled ? styles['-disabled'] : undefined}`}
 						key={tab.title}
 						onClick={() => setActiveTab(tab.title)}
 					>
