@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { sourceImageAtom } from '../../state/atoms'
 import styles from './Canvas.module.scss'
+import CanvasWithWEBGL2 from './CanvasWithWEBGL2'
 
 const Canvas = () => {
 	const [selectedFile, setSelectedFile] = useAtom(sourceImageAtom)
 	const [dragging, setDragging] = useState(false)
-	const canvas = useRef<HTMLCanvasElement>(null)
 	const image = useRef<HTMLImageElement>(null)
+	const canvas = useRef<HTMLCanvasElement>(null)
 
 	const handleImageLoaded = async (): Promise<number | undefined> => {
 		if (!image.current || !canvas.current)
@@ -22,6 +23,14 @@ const Canvas = () => {
 		canvas.current.height =
 			image.current.clientHeight * window.devicePixelRatio
 	}
+
+	useEffect(() => {
+		window.addEventListener('resize', handleImageLoaded)
+
+		return () => {
+			window.removeEventListener('resize', handleImageLoaded)
+		}
+	}, [])
 
 	return (
 		<div
@@ -61,7 +70,7 @@ const Canvas = () => {
 						alt="uploaded image"
 						onLoad={handleImageLoaded}
 					/>
-					<canvas ref={canvas}></canvas>
+					<CanvasWithWEBGL2 refObject={canvas} />
 				</div>
 			)}
 		</div>
