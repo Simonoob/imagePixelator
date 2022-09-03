@@ -1,12 +1,36 @@
 @use 'src/styles/theme' as theme;
 
 .root {
-	// mb-4 text-md capitalize flex items-center gap-x-2
 	font-size: theme.text-size(md);
 	text-transform: capitalize;
 	label {
 		display: flex;
 		align-items: center;
-		row-gap: theme.spacing(md);
+		column-gap: theme.spacing(sm);
+		svg {
+			height: theme.spacing(md);
+			width: theme.spacing(md);
+		}
+	}
+	.inputContainer {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: theme.spacing(md);
+
+		input {
+			width: 100%;
+			cursor: pointer;
+			appearance: none;
+			height: theme.spacing(2xs);
+			&[type='range']::-webkit-slider-thumb {
+				appearance: none;
+				background: theme.text-color(accent);
+				height: theme.spacing(md);
+				width: theme.spacing(md);
+				outline: theme.spacing(2xs) solid theme.text-color(primary);
+			}
+		}
 	}
 }

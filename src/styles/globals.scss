@@ -3,9 +3,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: '04B30';
+	font-display: swap;
+	src: url('/fonts/04B30.ttf');
+}
+
+@font-face {
+	font-family: 'Pixeboy';
+	src: url('/fonts/Pixeboy.ttf');
+}
+
 main {
 	color: theme.text-color(primary);
 	background-color: theme.background-color(primary);
+	font-family: 'Pixeboy';
+	letter-spacing: theme.spacing(2xs);
+	btn {
+		letter-spacing: theme.spacing(2xs);
+	}
+	h1 {
+		font-family: '04B30';
+	}
 }
 
 .shrinkToBottom {

@@ -2,10 +2,10 @@
 
 .Drawer {
 	grid-column: span 2;
-	border: 1px solid theme.text-color(disabled);
+	border: theme.spacing(2xs) solid theme.background-color(accent);
+	box-shadow: calc(-1 * theme.spacing(xs)) theme.spacing(xs)
+		theme.background-color(disabled);
 	border-right: none;
-	border-radius: theme.spacing(sm) 0 0 theme.spacing(sm);
-	overflow: auto;
 	height: 100%;
 	padding: theme.spacing(md);
 }

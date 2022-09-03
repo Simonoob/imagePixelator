@@ -14,11 +14,7 @@ const ControllersTabs = () => {
 			icon: <GearIcon />,
 			content: (
 				<div className="grid gap-y-5">
-					<ImageInput
-						label="Click or drag & drop an image to upload"
-						showAcceptedFormats
-						showIcon
-					/>
+					<ImageInput />
 					<BlocksController
 						min={4}
 						max={120}

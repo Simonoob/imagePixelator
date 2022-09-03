@@ -4,8 +4,9 @@
 	width: 100%;
 	max-height: 100%;
 	max-width: 100%;
-	border: 1px solid theme.text-color(disabled);
-	border-radius: theme.spacing(sm);
+	border: theme.spacing(2xs) solid theme.background-color(accent);
+	box-shadow: calc(-1 * theme.spacing(xs)) theme.spacing(xs)
+		theme.background-color(disabled);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -15,8 +16,29 @@
 
 .imageInput {
 	padding: theme.spacing(2xl);
-	border-radius: theme.spacing(sm);
 	background-color: theme.background-color(focus);
+	position: relative;
+	display: grid;
+	align-items: center;
+	justify-items: center;
+
+	&.dragging {
+		background-color: theme.text-color(accent);
+		width: 100%;
+		height: 100%;
+	}
+
+	.fileDropzone {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
 }
 
 .canvasContainer {
@@ -34,7 +56,6 @@
 	}
 
 	canvas {
-		background-color: rgba(255, 0, 0, 0.5);
 		position: absolute;
 		top: 50%;
 		left: 50%;

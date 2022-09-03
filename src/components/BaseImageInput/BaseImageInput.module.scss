@@ -3,14 +3,28 @@
 .toUpload {
 	height: 100%;
 	width: 100%;
+	min-height: 10rem;
+	display: grid;
 	cursor: pointer;
 	background-color: theme.background-color(focus);
-	outline: 2px dashed theme.background-color(accent);
+	outline: theme.spacing(3xs) dashed theme.background-color(accent);
 	padding: theme.spacing(lg);
 	outline-offset: theme.spacing(xs);
-	border-radius: theme.spacing(sm);
-	@media (hover: hover) {
-		background-color: theme.background-color(accent);
+	position: relative;
+	input {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+
+	&.dragging {
+		background-color: theme.text-color(accent);
 	}
 
 	div {
@@ -53,9 +67,8 @@
 		img {
 			grid-column: span 1;
 			object-fit: contain;
-			outline: 2px dashed theme.background-color(accent);
+			outline: theme.spacing(3xs) dashed theme.background-color(accent);
 			outline-offset: theme.spacing(2xs);
-			border-radius: theme.spacing(xs);
 		}
 		span {
 			grid-column: span 3;
@@ -66,13 +79,16 @@
 			width: 100%;
 		}
 		.deleteIcon {
-			border: 1px solid theme.text-color(error);
+			border: theme.spacing(3xs) solid theme.text-color(error);
 			color: theme.text-color(error);
 			padding: theme.spacing(sm);
-			border-radius: 50%;
 			display: grid;
 			align-items: center;
 			justify-items: center;
+			svg {
+				height: theme.spacing(md);
+				width: theme.spacing(md);
+			}
 			@media (hover: hover) {
 				&:hover {
 					background-color: theme.text-color(error);

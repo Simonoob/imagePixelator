@@ -32,6 +32,7 @@ $background-colors: (
 $_spacingUnit: 0.25rem;
 
 $spacing: (
+	3xs: $_spacingUnit / 4,
 	2xs: $_spacingUnit / 2,
 	xs: $_spacingUnit,
 	sm: $_spacingUnit * 2,

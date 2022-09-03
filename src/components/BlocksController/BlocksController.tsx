@@ -19,15 +19,12 @@ const BlocksController = ({ min, max, step }: Props) => {
 		<div className={styles.root}>
 			<label>
 				blocks
-				<div
-					className="tooltip tooltip-right"
-					data-tip="Along the shortest side"
-				>
-					<InfoCircledIcon className="h-5 w-5" />
+				<div className="tooltip" data-tip="Along the shortest side">
+					<InfoCircledIcon />
 				</div>
 			</label>
 
-			<div className="flex flex-nowrap items-center justify-between gap-x-3">
+			<div className={styles.inputContainer}>
 				<input
 					type="range"
 					defaultValue={blocks}
@@ -38,7 +35,6 @@ const BlocksController = ({ min, max, step }: Props) => {
 						e => setBlocks(Number(e.target.value)),
 						300,
 					)}
-					className="w-full h-1 appearance-none cursor-pointer col-span-7"
 				></input>
 				<span>{blocks}</span>
 			</div>
