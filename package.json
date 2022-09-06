@@ -13,6 +13,7 @@
 		"@types/lodash": "^4.14.183",
 		"babel-plugin-react-css-modules": "^5.2.6",
 		"daisyui": "^2.24.0",
+		"glsl-canvas-js": "^0.2.9",
 		"jotai": "^1.8.0",
 		"lodash": "^4.17.21",
 		"next": "12.2.5",

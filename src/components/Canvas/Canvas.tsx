@@ -1,36 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { useAtom } from 'jotai'
-import { sourceImageAtom } from '../../state/atoms'
+import { sourceImageAtom, sourceImageLoadedAtom } from '../../state/atoms'
 import styles from './Canvas.module.scss'
 import CanvasWithWEBGL2 from './CanvasWithWEBGL2'
 
 const Canvas = () => {
 	const [selectedFile, setSelectedFile] = useAtom(sourceImageAtom)
+	const [imageLoaded, setImageLoaded] = useAtom(sourceImageLoadedAtom)
 	const [dragging, setDragging] = useState(false)
 	const image = useRef<HTMLImageElement>(null)
-	const canvas = useRef<HTMLCanvasElement>(null)
 
 	const handleImageLoaded = async (): Promise<number | undefined> => {
-		if (!image.current || !canvas.current)
-			return window.setTimeout(handleImageLoaded, 30)
-
-		canvas.current.style.width = image.current.clientWidth + 'px'
-		canvas.current.style.height = image.current.clientHeight + 'px'
-
-		canvas.current.width =
-			image.current.clientWidth * window.devicePixelRatio
-		canvas.current.height =
-			image.current.clientHeight * window.devicePixelRatio
+		if (!image.current) return window.setTimeout(handleImageLoaded, 30)
+		setImageLoaded(true)
 	}
-
-	useEffect(() => {
-		window.addEventListener('resize', handleImageLoaded)
-
-		return () => {
-			window.removeEventListener('resize', handleImageLoaded)
-		}
-	}, [])
 
 	return (
 		<div
@@ -69,8 +53,9 @@ const Canvas = () => {
 						src={URL.createObjectURL(selectedFile)}
 						alt="uploaded image"
 						onLoad={handleImageLoaded}
+						id="canvasSourceImage"
 					/>
-					<CanvasWithWEBGL2 refObject={canvas} />
+					{imageLoaded && <CanvasWithWEBGL2 />}
 				</div>
 			)}
 		</div>

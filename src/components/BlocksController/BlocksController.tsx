@@ -1,6 +1,5 @@
 import React from 'react'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
-import debounce from 'lodash/debounce'
 import { useAtom } from 'jotai'
 import { blocksAtom } from '../../state/atoms'
 import styles from './BlocksController.module.scss'
@@ -31,10 +30,7 @@ const BlocksController = ({ min, max, step }: Props) => {
 					min={min}
 					max={max}
 					step={step}
-					onChange={debounce(
-						e => setBlocks(Number(e.target.value)),
-						300,
-					)}
+					onChange={e => setBlocks(Number(e.target.value))}
 				></input>
 				<span>{blocks}</span>
 			</div>
