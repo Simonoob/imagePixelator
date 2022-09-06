@@ -37,7 +37,7 @@ void main(void) {
     vec2 blocks = u_blocks;
 
     //sample by block from closest fragment
-    vec2 block = floor(uv * blocks) / blocks;
+    vec2 block = floor(uv * blocks + 0.5) / blocks;
 
     //get current block coordinates relative to the total blocks
     vec2 currentBlock = floor(block / 1.0 * blocks + 0.5);
