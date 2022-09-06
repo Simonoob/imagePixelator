@@ -1,5 +1,3 @@
-import { env } from './src/env/server.mjs'
-
 /**
  * Don't be scared of the generics here.
  * All they do is to give us autocompletion when using this.
@@ -17,8 +15,8 @@ export default defineNextConfig({
 	swcMinify: true,
 	webpack: (config, options) => {
 		config.module.rules.push({
-			test: /\.glsl/,
-			type: 'asset/source',
+			test: /\.(glsl|vs|fs)$/,
+			loader: 'ts-shader-loader',
 		})
 		return config
 	},
