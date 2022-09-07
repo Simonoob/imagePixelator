@@ -51,9 +51,7 @@ const ControllersTabs = () => {
 					</button>
 				))}
 			</nav>
-			<div className="flex-1 pb-20">
-				{tabs.find(tab => activeTab === tab.title)?.content}
-			</div>
+			{tabs.find(tab => activeTab === tab.title)?.content}
 		</div>
 	)
 }
