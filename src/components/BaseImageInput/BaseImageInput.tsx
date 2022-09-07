@@ -45,7 +45,10 @@ const BaseImageInput = () => {
 						Uploaded Image
 						<ImageIcon />
 					</label>
-					<div className={styles.uploadedContainer}>
+					<div
+						className={`${styles.uploadedContainer} tooltip`}
+						data-tip={selectedFile.name}
+					>
 						<img
 							src={URL.createObjectURL(selectedFile)}
 							alt="uploaded image"
