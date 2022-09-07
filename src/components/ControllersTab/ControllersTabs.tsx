@@ -15,7 +15,7 @@ const ControllersTabs = () => {
 			content: (
 				<div className="grid gap-y-5">
 					<ImageInput />
-					<BlocksController min={4} step={4} initialValue={24} />
+					<BlocksController min={1} initialValue={36} />
 				</div>
 			),
 		},

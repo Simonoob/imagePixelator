@@ -8,10 +8,9 @@ import useMaxBlocks from './useMaxBlocks'
 interface Props {
 	initialValue: number
 	min: number
-	step: number
 }
 
-const BlocksController = ({ min, step }: Props) => {
+const BlocksController = ({ min }: Props) => {
 	const [blocks, setBlocks] = useAtom(blocksAtom)
 	const maxBlocks = useMaxBlocks()
 
@@ -26,14 +25,28 @@ const BlocksController = ({ min, step }: Props) => {
 
 			<div className={styles.inputContainer}>
 				<input
+					className={styles.rangeInput}
 					type="range"
 					defaultValue={blocks}
 					min={min}
 					max={maxBlocks}
-					step={step}
+					step={1}
 					onChange={e => setBlocks(Number(e.target.value))}
 				></input>
-				<span>{blocks}</span>
+				<input
+					className={styles.numberInput}
+					type="number"
+					value={blocks}
+					min={0}
+					max={maxBlocks}
+					step={1}
+					onChange={e => {
+						let targetValue = Number(e.target.value)
+						if (targetValue > maxBlocks) targetValue = maxBlocks
+						if (targetValue < min) targetValue = min
+						setBlocks(targetValue)
+					}}
+				></input>
 			</div>
 		</div>
 	)

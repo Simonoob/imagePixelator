@@ -19,7 +19,7 @@
 		justify-content: space-between;
 		column-gap: theme.spacing(md);
 
-		input {
+		.rangeInput {
 			width: 100%;
 			cursor: pointer;
 			appearance: none;
@@ -31,6 +31,18 @@
 				width: theme.spacing(md);
 				outline: theme.spacing(2xs) solid theme.text-color(primary);
 			}
+		}
+		.numberInput {
+			appearance: none;
+			margin: 0;
+			background-color: transparent;
+			width: min-content;
+			text-align: center;
+		}
+		input[type='number']::-webkit-inner-spin-button,
+		input[type='number']::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
 		}
 	}
 }

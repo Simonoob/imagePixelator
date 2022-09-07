@@ -26,7 +26,7 @@ const Canvas = () => {
 			}}
 		>
 			{!selectedFile ? (
-				<span
+				<label
 					className={`${styles.imageInput} ${
 						dragging ? styles.dragging : undefined
 					}`}
@@ -44,8 +44,8 @@ const Canvas = () => {
 							(setSelectedFile(e.target.files[0]),
 							setDragging(false))
 						}
-					/>
-				</span>
+					></input>
+				</label>
 			) : (
 				<div className={styles.canvasContainer}>
 					<img
