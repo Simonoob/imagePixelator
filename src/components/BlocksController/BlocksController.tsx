@@ -3,16 +3,17 @@ import { InfoCircledIcon } from '@radix-ui/react-icons'
 import { useAtom } from 'jotai'
 import { blocksAtom } from '../../state/atoms'
 import styles from './BlocksController.module.scss'
+import useMaxBlocks from './useMaxBlocks'
 
 interface Props {
 	initialValue: number
 	min: number
-	max: number
 	step: number
 }
 
-const BlocksController = ({ min, max, step }: Props) => {
+const BlocksController = ({ min, step }: Props) => {
 	const [blocks, setBlocks] = useAtom(blocksAtom)
+	const maxBlocks = useMaxBlocks()
 
 	return (
 		<div className={styles.root}>
@@ -28,7 +29,7 @@ const BlocksController = ({ min, max, step }: Props) => {
 					type="range"
 					defaultValue={blocks}
 					min={min}
-					max={max}
+					max={maxBlocks}
 					step={step}
 					onChange={e => setBlocks(Number(e.target.value))}
 				></input>

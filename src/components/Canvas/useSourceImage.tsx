@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
+import { useAtomValue } from 'jotai'
+import { sourceImageLoadedAtom } from '../../state/atoms'
 
 const useDOMSourceImage = () => {
-	const [DOMsourceImage, setDOMsourceImage] = useState<Element | null>(null)
+	const [DOMsourceImage, setDOMsourceImage] =
+		useState<HTMLImageElement | null>(null)
+	const sourceImageLoaded = useAtomValue(sourceImageLoadedAtom)
 
 	useEffect(() => {
-		setDOMsourceImage(document.querySelector('#canvasSourceImage'))
-	}, [DOMsourceImage])
+		setDOMsourceImage(
+			document.querySelector<HTMLImageElement>('#canvasSourceImage'),
+		)
+	}, [DOMsourceImage, sourceImageLoaded])
 
 	return DOMsourceImage
 }
