@@ -1,7 +1,7 @@
 import React from 'react'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 import { useAtom } from 'jotai'
-import { blocksAtom } from '../../state/atoms'
+import { pixelInputValueAtom } from '../../state/atoms'
 import styles from './BlocksController.module.scss'
 import useMaxBlocks from './useMaxBlocks'
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const BlocksController = ({ min }: Props) => {
-	const [blocks, setBlocks] = useAtom(blocksAtom)
+	const [blocks, setBlocks] = useAtom(pixelInputValueAtom)
 	const maxBlocks = useMaxBlocks()
 
 	return (

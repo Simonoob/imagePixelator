@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from 'react'
 import { useAtom } from 'jotai'
-import { sourceImageAtom, sourceImageLoadedAtom } from '../../state/atoms'
+import { sourceImageFile, sourceImageLoadedAtom } from '../../state/atoms'
 import styles from './Canvas.module.scss'
 import CanvasWithWEBGL2 from './CanvasWithWEBGL2'
 
 const Canvas = () => {
-	const [selectedFile, setSelectedFile] = useAtom(sourceImageAtom)
+	const [selectedFile, setSelectedFile] = useAtom(sourceImageFile)
 	const [imageLoaded, setImageLoaded] = useAtom(sourceImageLoadedAtom)
 	const [dragging, setDragging] = useState(false)
 	const image = useRef<HTMLImageElement>(null)

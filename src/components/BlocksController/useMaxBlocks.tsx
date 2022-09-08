@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import useDOMSourceImage from '../Canvas/useSourceImage'
 import { useAtom } from 'jotai'
-import { blocksAtom } from '../../state/atoms'
+import { pixelInputValueAtom } from '../../state/atoms'
 
 const useMaxBlocks = () => {
 	const defaultMaxBlocks = 120
 	const sourceImage = useDOMSourceImage()
-	const [blocks, setBlocks] = useAtom(blocksAtom)
+	const [blocks, setBlocks] = useAtom(pixelInputValueAtom)
 	const [maxBlocks, setMaxBlocks] = useState(defaultMaxBlocks)
 
 	const getMinImageSide = (sourceImage: HTMLImageElement): number => {

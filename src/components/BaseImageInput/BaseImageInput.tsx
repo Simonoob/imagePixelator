@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { UploadIcon, TrashIcon, ImageIcon } from '@radix-ui/react-icons'
-import { sourceImageAtom, sourceImageLoadedAtom } from '../../state/atoms'
+import { sourceImageFile, sourceImageLoadedAtom } from '../../state/atoms'
 import { useAtom, useSetAtom } from 'jotai'
 import styles from './BaseImageInput.module.scss'
 import { useState } from 'react'
 
 const BaseImageInput = () => {
-	const [selectedFile, setSelectedFile] = useAtom(sourceImageAtom)
+	const [selectedFile, setSelectedFile] = useAtom(sourceImageFile)
 	const setImageLoaded = useSetAtom(sourceImageLoadedAtom)
 	const [dragging, setDragging] = useState(false)
 	return (

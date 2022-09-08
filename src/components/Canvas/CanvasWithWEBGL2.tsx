@@ -1,11 +1,12 @@
 import { useRef, useEffect } from 'react'
 import { useAtomValue } from 'jotai'
-import { blocksAtom } from '../../state/atoms'
+import { computedPixelsAtom } from '../../state/atoms'
 import useGLSLcanvas from './useGLSLcanvas'
 import useSourceImage from './useSourceImage'
 
 const CanvasWithWEBGL2 = () => {
-	const blocks = useAtomValue(blocksAtom)
+	const computedPixels = useAtomValue(computedPixelsAtom)
+
 	const glslCanvasObj = useGLSLcanvas()
 	const DOMsourceImage = useSourceImage()
 	const canvas = useRef<HTMLCanvasElement>(null)
@@ -41,30 +42,10 @@ const CanvasWithWEBGL2 = () => {
 	}, [DOMsourceImage, glslCanvasObj])
 
 	useEffect(() => {
-		if (!glslCanvasObj) return
+		if (!glslCanvasObj || !computedPixels) return
 
-		const computedBlocks = {
-			x: blocks,
-			y: blocks,
-		}
-
-		if (!DOMsourceImage) return
-		//force block to be squared
-		const sourceImageDimensions = {
-			width: DOMsourceImage.getBoundingClientRect().width,
-			height: DOMsourceImage.getBoundingClientRect().height,
-		}
-		const canvasRatio =
-			sourceImageDimensions.width / sourceImageDimensions.height
-
-		if (isNaN(canvasRatio))
-			return console.error('something went wrong computing aspect ratio')
-
-		canvasRatio > 1.0
-			? (computedBlocks.x *= canvasRatio)
-			: (computedBlocks.y /= canvasRatio)
-		glslCanvasObj.setUniform('u_blocks', computedBlocks.x, computedBlocks.y)
-	}, [DOMsourceImage, blocks, glslCanvasObj])
+		glslCanvasObj.setUniform('u_blocks', computedPixels.x, computedPixels.y)
+	}, [DOMsourceImage, computedPixels, glslCanvasObj])
 
 	return <canvas id="targetCanvas" ref={canvas}></canvas>
 }
