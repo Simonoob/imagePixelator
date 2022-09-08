@@ -4,6 +4,7 @@ import styles from './ControllersTabs.module.scss'
 import BlocksController from '../BlocksController/BlocksController'
 import ExportController from '../ExportController'
 import ImageInput from '../BaseImageInput/BaseImageInput'
+import ColorController from '../colorController/ColorController'
 
 const ControllersTabs = () => {
 	const [activeTab, setActiveTab] = useState('general')
@@ -22,8 +23,7 @@ const ControllersTabs = () => {
 		{
 			title: 'Color',
 			icon: <BlendingModeIcon />,
-			content: <div>Color</div>,
-			disabled: true,
+			content: <ColorController />,
 		},
 		{
 			title: 'Compare & Export',

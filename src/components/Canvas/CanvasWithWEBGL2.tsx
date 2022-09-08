@@ -16,10 +16,8 @@ const CanvasWithWEBGL2 = () => {
 		canvas.current.style.width = DOMsourceImage.clientWidth + 'px'
 		canvas.current.style.height = DOMsourceImage.clientHeight + 'px'
 
-		canvas.current.width =
-			DOMsourceImage.clientWidth * window.devicePixelRatio
-		canvas.current.height =
-			DOMsourceImage.clientHeight * window.devicePixelRatio
+		canvas.current.width = DOMsourceImage.naturalWidth
+		canvas.current.height = DOMsourceImage.naturalHeight
 	}
 
 	useEffect(() => {

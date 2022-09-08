@@ -27,7 +27,7 @@ const BlocksController = ({ min }: Props) => {
 				<input
 					className={styles.rangeInput}
 					type="range"
-					defaultValue={blocks}
+					value={blocks}
 					min={min}
 					max={maxBlocks}
 					step={1}
