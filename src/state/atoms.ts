@@ -1,5 +1,8 @@
 import { atom } from 'jotai'
 
+export const sourceImageFile = atom<File | undefined>(undefined)
+export const sourceImageLoadedAtom = atom(false)
+
 export const pixelInputValueAtom = atom(36)
 export const computedPixelsAtom = atom(get => {
 	if (!get(sourceImageLoadedAtom)) return undefined
@@ -27,5 +30,5 @@ export const computedPixelsAtom = atom(get => {
 
 	return computedBlocks
 })
-export const sourceImageFile = atom<File | undefined>(undefined)
-export const sourceImageLoadedAtom = atom(false)
+
+export const selectedPixelAtom = atom({x:-1, y:-1})

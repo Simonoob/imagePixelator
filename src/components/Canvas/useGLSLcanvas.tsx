@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Canvas, ICanvasOptions } from 'glsl-canvas-js/dist/cjs/glsl'
-import fragmentShader from './shaders/fragment.glsl'
+import fragmentShader from './shaders/fragment.frag'
 
 const useGLSLcanvas = (): Canvas | undefined => {
 	const [canvasObj, setCanvasObj] = useState<Canvas | undefined>(undefined)

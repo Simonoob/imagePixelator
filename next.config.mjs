@@ -17,7 +17,7 @@ export default defineNextConfig({
 	swcMinify: true,
 	webpack: (config, options) => {
 		config.module.rules.push({
-			test: /\.(glsl|vs|fs)$/,
+			test: /\.(glsl|vs|fs|frag|vert)$/,
 			loader: 'ts-shader-loader',
 		})
 		return config
