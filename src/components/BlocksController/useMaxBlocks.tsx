@@ -18,9 +18,10 @@ const useMaxBlocks = () => {
 			setMaxBlocks(defaultMaxBlocks)
 			blocks > defaultMaxBlocks && setBlocks(defaultMaxBlocks)
 		} else {
-			const minImageSide = getMinImageSide(sourceImage)
-			setMaxBlocks(minImageSide)
-			if (blocks > minImageSide) setBlocks(minImageSide)
+			const minImageSide = Math.round(getMinImageSide(sourceImage) / 10)
+			minImageSide > defaultMaxBlocks && setMaxBlocks(minImageSide)
+			if (blocks > minImageSide && minImageSide > defaultMaxBlocks)
+				setBlocks(minImageSide)
 		}
 	}, [blocks, setBlocks, sourceImage])
 

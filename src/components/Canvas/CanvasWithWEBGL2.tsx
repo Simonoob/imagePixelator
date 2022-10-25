@@ -1,5 +1,5 @@
 import { useRef, useEffect, MouseEventHandler } from 'react'
-import { useAtomValue } from 'jotai'
+import { useAtomValue, useSetAtom, useAtom } from 'jotai'
 import { computedPixelsAtom } from '../../state/atoms'
 import useGLSLcanvas from './useGLSLcanvas'
 import useSourceImage from './useSourceImage'
@@ -47,21 +47,7 @@ const CanvasWithWEBGL2 = () => {
 		glslCanvasObj.setUniform('u_blocks', computedPixels.x, computedPixels.y)
 	}, [DOMsourceImage, computedPixels, glslCanvasObj])
 
-    const setSelectedPixel: MouseEventHandler<HTMLCanvasElement> = (event) => {
-        if(!computedPixels || !canvas.current) return
-        const {width: canvasWidth, height: canvasHeight, left, top} = canvas.current.getBoundingClientRect()
-        const clickCoordinatesXcanvas= {
-            x: event.clientX - left,
-            y: canvasHeight - (event.clientY - top)
-        }
-        const selectedPixel = {
-            x: Math.round((clickCoordinatesXcanvas.x*computedPixels.x)/canvasWidth),
-            y: Math.round((clickCoordinatesXcanvas.y*computedPixels.y)/canvasHeight)
-        }
-        console.log(selectedPixel)
-    }
-
-	return <canvas id="targetCanvas" ref={canvas} onClick={setSelectedPixel}></canvas>
+	return <canvas id="targetCanvas" ref={canvas}></canvas>
 }
 
 export default CanvasWithWEBGL2

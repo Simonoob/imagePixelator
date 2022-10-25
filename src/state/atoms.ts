@@ -30,5 +30,3 @@ export const computedPixelsAtom = atom(get => {
 
 	return computedBlocks
 })
-
-export const selectedPixelAtom = atom({x:-1, y:-1})

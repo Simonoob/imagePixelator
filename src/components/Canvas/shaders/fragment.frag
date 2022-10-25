@@ -37,27 +37,13 @@ void main(void) {
     vec2 blocks = u_blocks;
 
     //sample by block from closest fragment
-    vec2 block = floor(uv * blocks + 0.5) / blocks;
-
-    //get current block coordinates relative to the total blocks
-    vec2 currentBlock = floor(block / 1.0 * blocks + 0.5);
-
-    //get custom block for current block
-    //int(floor(currentBlock.x+currentBlock.y))
-    vec4 customBlockColor = texture2D(u_texture_modifications, block);
+    vec2 block = floor(uv * blocks) / blocks;
 
     // sample color
     vec4 textureColor = texture2D(u_texture, block);
-    vec4 color = vec4(0.0);
+    vec4 color = textureColor;
+    // if( effectCoordinates > 0.0){
 
-    color = customBlockColor;
-
-    // if( customBlockColor.a > 0.5){
-    //     color = customBlockColor;
-    // }else{
-    //     color = textureColor; //texture sampling
-    //     // color = vec4(block.x, block.y, vec2(1.0)); //coordinates color
-    //     // color = mod(currentBlock.x+currentBlock.y, 2.0)==0.0 ? vec4(vec3(0.0), 1.0) : vec4(vec3(1.0),1.0); //chessboard
     // }
 
     gl_FragColor = color;
