@@ -45,6 +45,9 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
+	display: grid;
+	justify-content: center;
+	align-items: center;
 	img {
 		position: absolute;
 		object-fit: contain;
@@ -63,5 +66,26 @@
 		transform: translate(-50%, -50%);
 		height: 100%;
 		width: 100%;
+	}
+
+	.canvasInnerContainer {
+		max-width: 100%;
+		max-width: 100%;
+		position: relative;
+
+		// selectedArea
+		.rectangleEdge {
+			padding: 0.5rem;
+			position: absolute;
+			background-color: transparent;
+			backdrop-filter: invert(1);
+			border-radius: 50%;
+			&:hover {
+				cursor: grab;
+			}
+			&:active {
+				cursor: grabbing;
+			}
+		}
 	}
 }

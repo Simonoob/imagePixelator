@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { GearIcon, BlendingModeIcon, RocketIcon } from '@radix-ui/react-icons'
 import styles from './ControllersTabs.module.scss'
 import BlocksController from '../BlocksController/BlocksController'
-import ExportController from '../ExportController'
+import ExportController from '../ExportController/ExportController'
 import ImageInput from '../BaseImageInput/BaseImageInput'
-import ColorController from '../colorController/ColorController'
 
 const ControllersTabs = () => {
 	const [activeTab, setActiveTab] = useState('general')
@@ -21,15 +20,10 @@ const ControllersTabs = () => {
 			),
 		},
 		{
-			title: 'Color',
-			icon: <BlendingModeIcon />,
-			content: <ColorController />,
-		},
-		{
 			title: 'Compare & Export',
 			icon: <RocketIcon />,
 			content: <ExportController />,
-			disabled: true,
+			disabled: false,
 		},
 	]
 

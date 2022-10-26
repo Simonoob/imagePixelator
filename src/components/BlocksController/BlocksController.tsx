@@ -17,7 +17,7 @@ const BlocksController = ({ min }: Props) => {
 	return (
 		<div className={styles.root}>
 			<label>
-				blocks
+				pixels
 				<div className="tooltip" data-tip="Along the shortest side">
 					<InfoCircledIcon />
 				</div>

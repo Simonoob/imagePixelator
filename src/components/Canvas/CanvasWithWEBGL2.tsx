@@ -1,11 +1,17 @@
-import { useRef, useEffect, MouseEventHandler } from 'react'
-import { useAtomValue, useSetAtom, useAtom } from 'jotai'
-import { computedPixelsAtom } from '../../state/atoms'
+import { useRef, useEffect } from 'react'
+import { useAtomValue, useSetAtom } from 'jotai'
+import {
+	computedPixelsAtom,
+	selectionPointsAtom,
+	DOMcanvasDimensionsAtom,
+} from '../../state/atoms'
 import useGLSLcanvas from './useGLSLcanvas'
 import useSourceImage from './useSourceImage'
 
 const CanvasWithWEBGL2 = () => {
 	const computedPixels = useAtomValue(computedPixelsAtom)
+	const selectionPoints = useAtomValue(selectionPointsAtom)
+	const setDOMcanvasDimensions = useSetAtom(DOMcanvasDimensionsAtom)
 
 	const glslCanvasObj = useGLSLcanvas()
 	const DOMsourceImage = useSourceImage()
@@ -19,6 +25,11 @@ const CanvasWithWEBGL2 = () => {
 
 		canvas.current.width = DOMsourceImage.naturalWidth
 		canvas.current.height = DOMsourceImage.naturalHeight
+
+		setDOMcanvasDimensions({
+			width: canvas.current.clientWidth,
+			height: canvas.current.clientHeight,
+		})
 	}
 
 	useEffect(() => {
@@ -46,6 +57,20 @@ const CanvasWithWEBGL2 = () => {
 
 		glslCanvasObj.setUniform('u_blocks', computedPixels.x, computedPixels.y)
 	}, [DOMsourceImage, computedPixels, glslCanvasObj])
+
+	useEffect(() => {
+		if (!glslCanvasObj || !selectionPoints.length) return
+		glslCanvasObj.setUniform(
+			'u_selectedPoint1',
+			selectionPoints[0]?.x,
+			selectionPoints[0]?.y,
+		)
+		glslCanvasObj.setUniform(
+			'u_selectedPoint2',
+			selectionPoints[1]?.x,
+			selectionPoints[1]?.y,
+		)
+	}, [selectionPoints, glslCanvasObj])
 
 	return <canvas id="targetCanvas" ref={canvas}></canvas>
 }

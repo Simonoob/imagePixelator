@@ -9,6 +9,9 @@ uniform sampler2D u_texture_modifications;
 uniform vec2 u_mouse;
 uniform vec2 u_customBlock;
 
+uniform vec2 u_selectedPoint1;
+uniform vec2 u_selectedPoint2;
+
 varying vec2 v_texcoord;
 
 vec2 getAspectRatio(vec2 uv, float canvas_ratio, float texture_ratio) {
@@ -39,12 +42,27 @@ void main(void) {
     //sample by block from closest fragment
     vec2 block = floor(uv * blocks) / blocks;
 
-    // sample color
-    vec4 textureColor = texture2D(u_texture, block);
-    vec4 color = textureColor;
-    // if( effectCoordinates > 0.0){
 
-    // }
+    //selected area points
+    vec2 bottomLeft = vec2(
+        min(u_selectedPoint1.x, u_selectedPoint2.x),
+        min(u_selectedPoint1.y, u_selectedPoint2.y)
+        );
+    vec2 topRight = vec2(
+        max(u_selectedPoint1.x, u_selectedPoint2.x),
+        max(u_selectedPoint1.y, u_selectedPoint2.y)
+    );
+
+    // sample color
+    vec4 textureColor = texture2D(u_texture, uv);
+    vec4 color = textureColor;
+    if(
+        uv.x > bottomLeft.x && uv.x < topRight.x
+        &&
+        uv.y > bottomLeft.y && uv.y < topRight.y
+    ){
+        color = texture2D(u_texture, block); 
+    }
 
     gl_FragColor = color;
 }

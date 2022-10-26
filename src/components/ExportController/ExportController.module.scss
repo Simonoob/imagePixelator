@@ -1,0 +1,14 @@
+@use 'src/styles/theme' as theme;
+
+.button {
+	display: flex;
+	place-items: center;
+	place-content: center;
+	position: relative;
+	column-gap: theme.spacing(md);
+	padding: theme.spacing(md);
+	background-color: theme.background-color(accent);
+	svg {
+		color: theme.text-color(accent);
+	}
+}

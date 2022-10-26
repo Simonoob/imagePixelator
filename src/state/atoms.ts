@@ -30,3 +30,13 @@ export const computedPixelsAtom = atom(get => {
 
 	return computedBlocks
 })
+
+export const selectionPointsAtom = atom([
+	{ x: 0.25, y: 0.25 },
+	{ x: 0.75, y: 0.75 },
+])
+
+export const DOMcanvasDimensionsAtom = atom({
+	width: 0,
+	height: 0,
+})
