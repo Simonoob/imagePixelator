@@ -110,6 +110,8 @@ const Canvas = () => {
 						className={styles.fileDropzone}
 						type="file"
 						accept="image/png, image/jpeg, image/jpg"
+						onDragEnter={() => setDragging(true)}
+						onDragLeave={() => setDragging(false)}
 						onChange={e =>
 							e.target.files &&
 							e.target.files[0] &&
