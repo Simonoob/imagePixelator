@@ -33,10 +33,11 @@ const Canvas = () => {
 		if (
 			!data.node.id ||
 			(DOMcanvasDimensions.width === 0 &&
-				DOMcanvasDimensions.height === 0)
+				DOMcanvasDimensions.height === 0) ||
+			!selectedRectangle.current
 		)
 			return
-
+		selectedRectangle.current.style.outline = 'none'
 		const selectedCoordinates = {
 			x: Number((data.x / DOMcanvasDimensions.width).toFixed(2)),
 			y: Number(
@@ -57,6 +58,8 @@ const Canvas = () => {
 	}
 
 	const handleDraggingRectangle: DraggableEventHandler = (e, data) => {
+		if (!selectedRectangle.current) return
+		selectedRectangle.current.style.outline = 'none'
 		setSelectionPoints(prev =>
 			prev.map(item => ({
 				x: item.x + data.deltaX / DOMcanvasDimensions.width,

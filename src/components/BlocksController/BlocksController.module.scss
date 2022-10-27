@@ -45,4 +45,26 @@
 			margin: 0;
 		}
 	}
+
+	.resizeInfo {
+		margin-top: theme.spacing(lg);
+		display: grid;
+		place-content: center;
+		place-items: center;
+		background-color: theme.background-color(accent);
+		padding: theme.spacing(md);
+		row-gap: theme.spacing(md);
+		outline: theme.spacing(2xs) dashed theme.background-color(accent);
+		outline-offset: theme.spacing(xs);
+		svg {
+			margin-bottom: theme.spacing(md);
+		}
+		p {
+			text-align: center;
+			font-size: 0.85rem;
+			span {
+				color: theme.text-color(accent);
+			}
+		}
+	}
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
-import { useAtom } from 'jotai'
-import { pixelInputValueAtom } from '../../state/atoms'
+import { useAtom, useAtomValue } from 'jotai'
+import { pixelInputValueAtom, sourceImageLoadedAtom } from '../../state/atoms'
 import styles from './BlocksController.module.scss'
 import useMaxBlocks from './useMaxBlocks'
 
@@ -12,6 +12,7 @@ interface Props {
 
 const BlocksController = ({ min }: Props) => {
 	const [blocks, setBlocks] = useAtom(pixelInputValueAtom)
+	const sourceImageLoaded = useAtomValue(sourceImageLoadedAtom)
 	const maxBlocks = useMaxBlocks()
 
 	return (
@@ -48,6 +49,15 @@ const BlocksController = ({ min }: Props) => {
 					}}
 				></input>
 			</div>
+			{sourceImageLoaded && (
+				<div className={styles.resizeInfo}>
+					<label>Resize</label>
+					<p>
+						Move the <span>purple</span> dots to resize the
+						pixelated area
+					</p>
+				</div>
+			)}
 		</div>
 	)
 }
