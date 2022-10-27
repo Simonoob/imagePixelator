@@ -74,17 +74,44 @@
 		position: relative;
 
 		// selectedArea
-		.rectangleEdge {
-			padding: 0.5rem;
+		.selectedRectangle {
 			position: absolute;
-			background-color: transparent;
-			backdrop-filter: invert(1);
-			border-radius: 50%;
-			&:hover {
-				cursor: grab;
+			@media (hover: hover) {
+				&:hover {
+					cursor: grab;
+				}
+				&:active {
+					cursor: grabbing;
+				}
 			}
-			&:active {
-				cursor: grabbing;
+		}
+
+		.rectangleEdge {
+			position: absolute;
+			z-index: 1;
+
+			@media (hover: hover) {
+				&:hover {
+					cursor: grab;
+					&::after {
+						scale: 1.75;
+					}
+				}
+				&:active {
+					cursor: grabbing;
+				}
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				transform: translate(-0.5rem, -0.5rem);
+				transform-origin: top left;
+				border-radius: 50%;
+				transition: 0.15s ease;
+				width: 1rem;
+				height: 1rem;
+				background-color: black;
+				box-shadow: theme.text-color(accent) 0px 0px 0px 3px;
 			}
 		}
 	}

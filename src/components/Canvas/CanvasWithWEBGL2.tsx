@@ -40,7 +40,10 @@ const CanvasWithWEBGL2 = () => {
 	}, [])
 
 	useEffect(() => {
-		if (!glslCanvasObj || !DOMsourceImage) return
+		if (!glslCanvasObj || !DOMsourceImage) {
+			setDOMcanvasDimensions({ width: 0, height: 0 })
+			return
+		}
 		resizeCanvas()
 		glslCanvasObj.setTexture('u_texture', DOMsourceImage)
 		const sourceImageDimensions = DOMsourceImage.getBoundingClientRect()

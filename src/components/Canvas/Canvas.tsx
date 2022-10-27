@@ -21,6 +21,8 @@ const Canvas = () => {
 	const DOMsourceImage = useSourceImage()
 	const DOMcanvasDimensions = useAtomValue(DOMcanvasDimensionsAtom)
 	const canvasInnerContainer = useRef<HTMLDivElement>(null)
+	const selectedRectangle = useRef<HTMLDivElement>(null)
+	const rectangleEdge = useRef<HTMLDivElement>(null)
 
 	const handleImageLoaded = async (): Promise<number | undefined> => {
 		if (!image.current) return window.setTimeout(handleImageLoaded, 30)
@@ -54,11 +56,41 @@ const Canvas = () => {
 		)
 	}
 
+	const handleDraggingRectangle: DraggableEventHandler = (e, data) => {
+		setSelectionPoints(prev =>
+			prev.map(item => ({
+				x: item.x + data.deltaX / DOMcanvasDimensions.width,
+				y: item.y - data.deltaY / DOMcanvasDimensions.height,
+			})),
+		)
+	}
+
 	useEffect(() => {
 		if (!DOMsourceImage || !canvasInnerContainer.current) return
-		canvasInnerContainer.current.style.width = `calc(${DOMsourceImage.clientWidth}px + 1rem)` //add 1rem to align the measuring dot to the center when on the edges
-		canvasInnerContainer.current.style.height = `calc(${DOMsourceImage.clientHeight}px + 1rem)`
+		canvasInnerContainer.current.style.width = `calc(${DOMsourceImage.clientWidth}px)` //add 1rem to align the measuring dot to the center when on the edges
+		canvasInnerContainer.current.style.height = `calc(${DOMsourceImage.clientHeight}px)`
 	}, [DOMsourceImage, canvasInnerContainer.current])
+
+	useEffect(() => {
+		if (
+			!selectedRectangle.current ||
+			!DOMsourceImage ||
+			(DOMcanvasDimensions.width === 0 &&
+				DOMcanvasDimensions.height === 0)
+		)
+			return
+
+		selectedRectangle.current.style.width = `${
+			(Math.max(selectionPoints[0].x, selectionPoints[1].x) -
+				Math.min(selectionPoints[0].x, selectionPoints[1].x)) *
+			DOMcanvasDimensions.width
+		}px`
+		selectedRectangle.current.style.height = `${
+			(Math.max(selectionPoints[0].y, selectionPoints[1].y) -
+				Math.min(selectionPoints[0].y, selectionPoints[1].y)) *
+			DOMcanvasDimensions.height
+		}px`
+	}, [selectionPoints, , selectedRectangle.current, DOMcanvasDimensions])
 
 	return (
 		<div className={styles.root}>
@@ -102,7 +134,7 @@ const Canvas = () => {
 								DOMcanvasDimensions.height > 0 && (
 									<>
 										<Draggable
-											defaultPosition={{
+											position={{
 												x:
 													selectionPoints[0]?.x *
 													DOMcanvasDimensions.width,
@@ -117,10 +149,39 @@ const Canvas = () => {
 											<div
 												id="0"
 												className={styles.rectangleEdge}
+												ref={rectangleEdge}
 											></div>
 										</Draggable>
+
 										<Draggable
-											defaultPosition={{
+											position={{
+												x:
+													Math.min(
+														selectionPoints[0].x,
+														selectionPoints[1].x,
+													) *
+													DOMcanvasDimensions.width,
+												y:
+													DOMcanvasDimensions.height -
+													Math.max(
+														selectionPoints[0].y,
+														selectionPoints[1].y,
+													) *
+														DOMcanvasDimensions.height,
+											}}
+											onDrag={handleDraggingRectangle}
+											bounds={'parent'}
+										>
+											<div
+												className={
+													styles.selectedRectangle
+												}
+												ref={selectedRectangle}
+											></div>
+										</Draggable>
+
+										<Draggable
+											position={{
 												x:
 													selectionPoints[1]?.x *
 													DOMcanvasDimensions.width,
