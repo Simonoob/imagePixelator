@@ -62,7 +62,7 @@ const CanvasWithWEBGL2 = () => {
 	}, [DOMsourceImage, computedPixels, glslCanvasObj])
 
 	useEffect(() => {
-		if (!glslCanvasObj || !selectionPoints.length) return
+		if (!glslCanvasObj) return
 		glslCanvasObj.setUniform(
 			'u_selectedPoint1',
 			selectionPoints[0]?.x,

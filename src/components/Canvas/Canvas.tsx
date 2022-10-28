@@ -48,24 +48,28 @@ const Canvas = () => {
 			),
 		}
 
-		setSelectionPoints(prev =>
-			prev.map((item, i) =>
-				i === Number(data.node.id)
-					? { x: selectedCoordinates.x, y: selectedCoordinates.y }
-					: item,
-			),
-		)
+		setSelectionPoints(prev => ({
+			...prev,
+			[Number(data.node.id)]: {
+				x: selectedCoordinates.x,
+				y: selectedCoordinates.y,
+			},
+		}))
 	}
 
 	const handleDraggingRectangle: DraggableEventHandler = (e, data) => {
 		if (!selectedRectangle.current) return
 		selectedRectangle.current.style.outline = 'none'
-		setSelectionPoints(prev =>
-			prev.map(item => ({
-				x: item.x + data.deltaX / DOMcanvasDimensions.width,
-				y: item.y - data.deltaY / DOMcanvasDimensions.height,
-			})),
-		)
+		setSelectionPoints(prev => ({
+			0: {
+				x: prev[0].x + data.deltaX / DOMcanvasDimensions.width,
+				y: prev[0].y - data.deltaY / DOMcanvasDimensions.height,
+			},
+			1: {
+				x: prev[0].x + data.deltaX / DOMcanvasDimensions.width,
+				y: prev[0].y - data.deltaY / DOMcanvasDimensions.height,
+			},
+		}))
 	}
 
 	useEffect(() => {
