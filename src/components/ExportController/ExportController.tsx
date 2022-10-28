@@ -3,16 +3,35 @@ import { DownloadIcon } from '@radix-ui/react-icons'
 import styles from './ExportController.module.scss'
 import { sourceImageFile } from '../../state/atoms'
 import { useAtomValue } from 'jotai'
+import useDOMSourceImage from '../Canvas/useSourceImage'
 
 const ExportController = () => {
 	const [selectedFormat, setSelectedFormat] = useState('image/jpeg')
 	const [selectedQuality, setSelectedQuality] = useState(1)
 	const selectedFile = useAtomValue(sourceImageFile)
+	const DOMsourceImage = useDOMSourceImage()
 
 	const handleDownload = () => {
 		const canvas = document.querySelector('#targetCanvas')
-		if (!(canvas instanceof HTMLCanvasElement)) return
-		let canvasUrl = canvas.toDataURL(selectedFormat, selectedQuality)
+		if (!(canvas instanceof HTMLCanvasElement) || !DOMsourceImage) return
+
+		const resizedCanvas = document.createElement('canvas')
+		const resizedContext = resizedCanvas.getContext('2d')
+		if (!resizedContext) return
+
+		//actual image dimensions
+		resizedCanvas.width = DOMsourceImage.naturalWidth
+		resizedCanvas.height = DOMsourceImage.naturalHeight
+
+		resizedContext.drawImage(
+			canvas,
+			0,
+			0,
+			resizedCanvas.width,
+			resizedCanvas.height,
+		)
+
+		let canvasUrl = resizedCanvas.toDataURL(selectedFormat, selectedQuality)
 		const anchor = document.createElement('a')
 		anchor.href = canvasUrl
 		anchor.download =
