@@ -4,9 +4,12 @@ import styles from './ControllersTabs.module.scss'
 import BlocksController from '../BlocksController/BlocksController'
 import ExportController from '../ExportController/ExportController'
 import ImageInput from '../BaseImageInput/BaseImageInput'
+import { sourceImageFile } from '../../state/atoms'
+import { useAtomValue } from 'jotai'
 
 const ControllersTabs = () => {
 	const [activeTab, setActiveTab] = useState('general')
+	const selectedFile = useAtomValue(sourceImageFile)
 
 	const tabs = [
 		{
@@ -20,10 +23,10 @@ const ControllersTabs = () => {
 			),
 		},
 		{
-			title: 'Compare & Export',
+			title: 'Export Image',
 			icon: <RocketIcon />,
 			content: <ExportController />,
-			disabled: false,
+			disabled: !Boolean(selectedFile),
 		},
 	]
 
@@ -45,7 +48,8 @@ const ControllersTabs = () => {
 					</button>
 				))}
 			</nav>
-			{tabs.find(tab => activeTab === tab.title)?.content}
+			{tabs.find(tab => activeTab === tab.title && !tab.disabled)
+				?.content || <p>Not available</p>}
 		</div>
 	)
 }

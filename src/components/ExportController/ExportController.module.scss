@@ -1,14 +1,33 @@
 @use 'src/styles/theme' as theme;
 
-.button {
-	display: flex;
-	place-items: center;
-	place-content: center;
-	position: relative;
-	column-gap: theme.spacing(md);
-	padding: theme.spacing(md);
-	background-color: theme.background-color(accent);
-	svg {
-		color: theme.text-color(accent);
+.container {
+	display: grid;
+	row-gap: theme.spacing(lg);
+	.buttonGroup {
+		display: flex;
+		flex-wrap: nowrap;
+		width: 100%;
+		button {
+			flex: 1;
+		}
+	}
+	.button {
+		display: flex;
+		place-items: center;
+		place-content: center;
+		position: relative;
+		width: auto;
+		border: none;
+		border-radius: 0;
+		width: 100%;
+		column-gap: theme.spacing(md);
+		padding: theme.spacing(md);
+		background-color: theme.background-color(accent);
+		svg {
+			color: theme.text-color(accent);
+		}
+	}
+	.downloadButton {
+		color: white;
 	}
 }
