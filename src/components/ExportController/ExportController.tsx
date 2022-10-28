@@ -31,7 +31,10 @@ const ExportController = () => {
 			resizedCanvas.height,
 		)
 
-		let canvasUrl = resizedCanvas.toDataURL(selectedFormat, selectedQuality)
+		const canvasUrl = resizedCanvas.toDataURL(
+			selectedFormat,
+			selectedQuality,
+		)
 		const anchor = document.createElement('a')
 		anchor.href = canvasUrl
 		anchor.download =
