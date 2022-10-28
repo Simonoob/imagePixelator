@@ -53,8 +53,8 @@ const BlocksController = ({ min }: Props) => {
 				<div className={styles.resizeInfo}>
 					<label>Resize</label>
 					<p>
-						Move the <span>purple</span> dots to resize the
-						pixelated area
+						Move the <span>black</span>
+						<span>white</span> dots to resize the pixelated area
 					</p>
 				</div>
 			)}

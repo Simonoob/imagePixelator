@@ -66,8 +66,8 @@ const Canvas = () => {
 				y: prev[0].y - data.deltaY / DOMcanvasDimensions.height,
 			},
 			1: {
-				x: prev[0].x + data.deltaX / DOMcanvasDimensions.width,
-				y: prev[0].y - data.deltaY / DOMcanvasDimensions.height,
+				x: prev[1].x + data.deltaX / DOMcanvasDimensions.width,
+				y: prev[1].y - data.deltaY / DOMcanvasDimensions.height,
 			},
 		}))
 	}
