@@ -38,7 +38,8 @@ const ExportController = () => {
 		const anchor = document.createElement('a')
 		anchor.href = canvasUrl
 		anchor.download =
-			selectedFile?.name.replace(/\.[^/.]+$/, '') || 'downloadedImage'
+			selectedFile?.name.substr(0, selectedFile?.name.lastIndexOf('.')) ||
+			'pixelatedImage'
 		anchor.click()
 		anchor.remove()
 	}
