@@ -8,4 +8,7 @@
 	border-right: none;
 	height: 100%;
 	padding: theme.spacing(md);
+	@media screen and (max-width: theme.breakpoint(sm)) {
+		display: none;
+	}
 }

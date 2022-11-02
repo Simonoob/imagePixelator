@@ -12,6 +12,9 @@
 	justify-content: center;
 	position: relative;
 	padding: theme.spacing(md);
+	@media screen and (max-width: theme.breakpoint(sm)) {
+		display: none;
+	}
 }
 
 .imageInput {
