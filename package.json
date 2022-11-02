@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@panelbear/panelbear-nextjs": "^1.0.5",
 		"@radix-ui/react-icons": "^1.1.1",
 		"@types/lodash": "^4.14.183",
 		"babel-plugin-react-css-modules": "^5.2.6",
