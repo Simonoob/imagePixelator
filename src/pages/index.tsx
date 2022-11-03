@@ -8,11 +8,12 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Pixelator</title>
+				<title>Image Pixelator</title>
 				<meta
 					name="description"
-					content="Create pixel art quickly from existing images"
+					content="Online image pixelation tool powered by GLSL shaders."
 				/>
+				<meta property="og:image" content="preview.jpeg" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.mainContainer}>
