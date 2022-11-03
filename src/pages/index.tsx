@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 					name="description"
 					content="Online image pixelation tool powered by GLSL shaders."
 				/>
-				<meta property="og:image" content="preview.jpeg" />
+				<meta property="og:image" content="/preview.jpeg" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.mainContainer}>
