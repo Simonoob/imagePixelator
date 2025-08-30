@@ -5,11 +5,15 @@
 	"packageManager": "yarn@1.22.22",
 	"scripts": {
 		"dev": "next dev",
+		"lint": "next lint",
 		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
+		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+		"upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
 	},
 	"dependencies": {
+		"@opennextjs/cloudflare": "^1.6.5",
 		"@panelbear/panelbear-nextjs": "^1.0.5",
 		"@radix-ui/react-icons": "^1.1.1",
 		"@types/lodash": "^4.14.183",
@@ -18,7 +22,7 @@
 		"glsl-canvas-js": "^0.2.9",
 		"jotai": "^1.8.0",
 		"lodash": "^4.17.21",
-		"next": "12.2.5",
+		"next": "14.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-draggable": "^4.4.5",
